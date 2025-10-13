@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Проверка попадания точки</title>
+
+	<link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+	<header class="page-header">
+		<h1>Кузнецов Андрей Романович, P3208, Вариант 466386</h1>
+	</header>
+
+	<main class="layout">
+		<section class="input" aria-labelledby="form-title">
+			<h2 id="form-title">Параметры точки</h2>
+			<form id="check-form" 
+			class="form" 
+			method="get" 
+			novalidate>
+
+				<fieldset class="field">
+					<legend>Координата X (Выберите одно значение)</legend>
+					<div class="x-buttons">
+						<input class="x-button" type="button" value="-3">
+						<input class="x-button" type="button" value="-2">
+						<input class="x-button" type="button" value="-1">
+						<input class="x-button" type="button" value="0">
+						<input class="x-button" type="button" value="1">
+						<input class="x-button" type="button" value="2">
+						<input class="x-button" type="button" value="3">
+						<input class="x-button" type="button" value="4">
+						<input class="x-button" type="button" value="5">
+					</div>
+				</fieldset>
+
+				<fieldset class="field">
+					<legend>Координата Y (Введите значение от -5 до 3)</legend>
+					<label for="y">Y:</label>
+					<input type="text" name="y" id="y" placeholder="-5...3">
+				</fieldset>
+
+				<fieldset class="field">
+					<legend>Радиус R (Выберите одно значение)</legend>
+					<div class="r-buttons">
+						<label><input type="checkbox" name="r" value="1"> 1</label>
+						<label><input type="checkbox" name="r" value="1.5"> 1.5</label>
+						<label><input type="checkbox" name="r" value="2"> 2</label>
+						<label><input type="checkbox" name="r" value="2.5"> 2.5</label>
+						<label><input type="checkbox" name="r" value="3"> 3</label>
+					</div>
+				</fieldset>
+
+				<div class="form-actions">
+					<button type="submit" id="submit"> Проверить</button>
+					<button type="reset">Сбросить</button>
+				</div>
+			</form>
+		</section>
+		
+		<section class="graph" aria-labelledby="graph-title">
+			<h2 id="graph-title">Область попадания</h2>
+			<img id="graph-img" src="graph.png"
+			alt="Область попадания при радиусе R" />
+			<p class="graph-text">Синяя область - точки, считающиеся попаданием</p>
+		</section>
+
+		<section class="results" aria-labelledby="table-title">
+			<h2 id="table-title">Результаты</h2>
+			<table class="results-table">
+				<thead>
+					<tr>
+						<th scope="col">X</th>
+						<th scope="col">Y</th>
+						<th scope="col">R</th>
+						<th scope="col">Попадание</th>
+						<th scope="col">Текущее время</th>
+						<th scope="col">Время выполнения(мс)</th>
+					</tr>
+				</thead>
+				<tbody id="results-body">
+					<!--Строки таблицы добавятся через JS-->
+
+				</tbody>
+			</table>
+		</section>
+	</main>
+
+	<footer class="page-footer">
+		<small>&copy; 2025 Кузнецов А.Р.</small>
+	</footer>
+
+	<script src="js/app.js" defer></script>
+</body>
+</html>

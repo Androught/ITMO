@@ -9,7 +9,9 @@ body {
 	background: #D3D3D3;
 }
 
-{box-sizing: border-box;}
+*, *::before, *::after { box-sizing: border-box; }
+
+
 
 .page-header, .page-footer {
   background: #A9A9A9;
@@ -49,6 +51,12 @@ body {
  	margin: 0 8px 8px 0;
 	cursor: pointer; }
 
+.x-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
 input[type="text"] {
   width: 160px;
   padding: 8px;                
@@ -58,14 +66,13 @@ input[type="text"] {
 
 input[type="text"]::placeholder { color: #9aa3b2; }
 
-input[type="checkbox"][name="r"],
-input[type="radio"][name="x"] {
+input[type="checkbox"][name="r"] {
   width: 16px; height: 16px;
 }
 
 .form-actions { margin-top: 12px; display: flex; gap: 8px; }
 
-.form-actions button {
+.form-actions button, .x-button {
   padding: 10px 16px;          
   border: 1px solid #696969;
   background: #A9A9A9;
@@ -73,7 +80,12 @@ input[type="radio"][name="x"] {
   cursor: pointer;
 }
 
-.form-actions button:hover { filter: brightness(.85); }
+.form-actions button:hover, .x-button:hover { filter: brightness(.85); }
+
+.x-button.active {
+  background: #1E90FF;
+  color: #fff;
+}
 
 button[type="submit"] {
   background: #CACACA;
@@ -104,7 +116,6 @@ button[type="submit"] {
 .results-table tbody tr:nth-child(even) { background: #C0C0C0; }
 .results-table thead th { background: #A9A9A9; }
 
-/*Покраска в красный/зеленый в зависимости от попадания*/
 .results-table td.hit-yes { color: #1a7f37; font-weight: 600; }
 .results-table td.hit-no  { color: #b42318; font-weight: 600; }
 

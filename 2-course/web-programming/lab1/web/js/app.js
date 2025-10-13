@@ -3,7 +3,7 @@ const $ = (select, root = document) => root.querySelector(select);
 const $$ = (select, root = document) => Array.from(root.querySelectorAll(select));
 
 function toNumber(str){
-	if (typeof str != string) return null;
+	if (typeof str != "string") return null;
 	const t = str.trim().replace(",", ".");
 	if (t === "") return null;
 	const num = Number(t);
@@ -36,11 +36,21 @@ const R_ALLOWED = [1, 1.5, 2, 2.5, 3];
 const Y_MIN = -5, Y_MAX = 3;
 
 function getX() {
-	const checked = document.querySelector('input[name="x"]:checked');
-	if (!checked) throw new Error("Выберите значение X.");
-	const x = Number(checked.value);
+	const selected = $('.x-button.active');
+	if (!selected) throw new Error("Выберите значение X.");
+	const x = Number(selected.value);
 	if (!X_ALLOWED.includes(x)) throw new Error("Недопустимое значение X");
 	return x;
+}
+
+function setupXButtons() {
+	const buttons = $$('.x-button');
+	buttons.forEach(button => {
+		button.addEventListener('click', () => {
+			buttons.forEach(b => b.classList.remove('active'));
+			button.classList.add('active');
+		})
+	})
 }
 
 function getR() {
@@ -109,6 +119,7 @@ function addRow({ x, y, r, hit, serverTime, workingTime }) {
 function init() {
 
 	setupSingleCheckboxForR();
+	setupXButtons();
 
 	const form = $("#check-form");
 	if (!form) return;
@@ -129,6 +140,8 @@ function init() {
 
 	form.addEventListener("reset", () => {
 		clearError();
+
+		$$('.x-button.active').forEach(b => b.classList.remove('active'));
 	});
 }
 
