@@ -24,17 +24,38 @@ body {
 .page-header h1 { margin: 0; }
 
 .layout {
-  display: grid;
-  grid-template-columns: 550px 1fr; 
+  display: flex;
+  flex-wrap: wrap;
   gap: 16px;
   max-width: 1100px;
   margin: 0 auto;
   padding: 16px;    
 }
 
-.input, .graph, .results { background: #DCDCDC; border: 1px solid #e6e8ee; border-radius: 8px; }
+.input, .graph, .results { 
+  background: #DCDCDC; 
+  border: 1px solid #e6e8ee; 
+  border-radius: 8px; 
+}
+
 .input, .graph { padding: 16px; }
-.results { padding: 16px; grid-column: 1 / -1; }
+
+.input {
+  flex: 0, 0, 550px;
+  max-width: 100%;
+}
+
+.graph {
+  flex: 1, 1, 0;
+  min-width: 260px;
+}
+
+.results {
+  flex: 0, 0, 100%;
+  width: 100%;
+  padding: 16px;
+}
+
 
 .field {
   margin: 0 0 12px 0;            
