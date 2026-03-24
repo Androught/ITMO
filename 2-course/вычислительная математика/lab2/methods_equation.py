@@ -151,17 +151,32 @@ def check_simple_iteration_convergence(eq, a, b, lam, samples=200):
     return max_val < 1, max_val
 
 
-def compute_lambda(eq, a, b, samples=100):
-    max_df = 0.0
+def compute_lambda(eq, a, b, samples=200):
+    min_df = float("inf")
+    max_df = float("-inf")
+    max_abs_df = 0.0
 
     for i in range(samples + 1):
         x = a + (b - a) * i / samples
-        max_df = max(max_df, abs(eq.df(x)))
+        d = eq.df(x)
 
-    if max_df == 0:
+        min_df = min(min_df, d)
+        max_df = max(max_df, d)
+        max_abs_df = max(max_abs_df, abs(d))
+
+    if max_abs_df == 0:
         raise ValueError("Производная равна нулю на интервале.")
 
-    return -1 / max_df
+    if min_df > 0:
+        return -1 / max_abs_df
+
+    if max_df < 0:
+        return 1 / max_abs_df
+
+    raise ValueError(
+        "Для метода простой итерации на этом интервале f'(x) меняет знак. "
+        "Нужно выбрать другой интервал."
+    )
 
 
 def simple_iteration_method(eq, a, b, eps, max_iter=MAX_ITER):

@@ -116,20 +116,24 @@ def solve_system():
 
 
 def main():
-    print("\n=== Лабораторная работа №2 ===")
-    print("1. Решить нелинейное уравнение")
-    print("2. Решить систему нелинейных уравнений")
+    while True:
+        print("\n=== Лабораторная работа №2 ===")
+        print("1. Решить нелинейное уравнение")
+        print("2. Решить систему нелинейных уравнений")
+        print("0. Выход")
 
-    choice = read_int("Введите пункт меню: ", valid_values={1, 2})
+        choice = read_int("Введите пункт меню: ", valid_values={0, 1, 2})
 
-    try:
-        if choice == 1:
-            solve_equation()
-        else:
-            solve_system()
-
-    except Exception as e:
-        print(f"\nОшибка: {e}")
+        try:
+            if choice == 1:
+                solve_equation()
+            elif choice == 2:
+                solve_system()
+            else:
+                print("Завершение программы.")
+                break
+        except Exception as e:
+            print(f"\nОшибка: {e}")
 
 
 if __name__ == "__main__":
